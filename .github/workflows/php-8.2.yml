@@ -5,6 +5,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
+  IMAGE_NAME: frankenphp
   VERSION: php8.2
 
 jobs:
@@ -35,7 +36,7 @@ jobs:
           platforms: linux/amd64
           push: true
           tags: |
-            ${{ env.REGISTRY }}/${{ github.repository }}:${{ env.VERSION }}
+            ${{ env.REGISTRY }}/${{ github.actor }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
           outputs: |
             type=image,compression=zstd,force-compression=true
           cache-from: type=gha
