@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-FROM scratch
+FROM docker.io/redhat/ubi9-minimal:latest
 LABEL org.opencontainers.image.title=FrankenPHP
 LABEL org.opencontainers.image.version=1.12.3
 LABEL org.opencontainers.image.url=https://frankenphp.dev
@@ -7,8 +7,8 @@ LABEL org.opencontainers.image.source=https://github.com/php/frankenphp
 LABEL org.opencontainers.image.licenses=MIT
 LABEL org.opencontainers.image.phpversion=8.2.31
 
-COPY --from=redhat/ubi9-minimal / /
 COPY --from=tianon/gosu --chmod=755 /gosu /usr/bin/
+COPY --chmod=755 entrypoint.sh /entrypoint.sh
 
 RUN rpm -Uvh https://rpm.henderkes.com/static-php-1-1.noarch.rpm && \
     microdnf update -y && \
@@ -116,7 +116,6 @@ RUN echo "<?php phpinfo(); ?>" > /usr/share/frankenphp/info.php
 
 COPY Caddyfile /etc/frankenphp/Caddyfile
 COPY php.ini-production /etc/frankenphp/php.ini
-COPY --chmod=755 entrypoint.sh /entrypoint.sh
 
 # Restart the Worker After a Certain Number of Requests
 # ENV MAX_REQUESTS=1000
