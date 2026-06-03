@@ -1,4 +1,4 @@
-name: Docker Image CI for frankenphp:php8.4
+name: frankenphp:php8.4
 
 on:
   workflow_dispatch:
