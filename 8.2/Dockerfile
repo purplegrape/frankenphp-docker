@@ -102,6 +102,8 @@ RUN rpm -Uvh https://rpm.henderkes.com/static-php-1-1.noarch.rpm && \
 #	php-zts-zip
 #	php-zts-zstd
 
+RUN echo "<?php phpinfo(); ?>" > /usr/share/frankenphp/info.php
+
 FROM scratch
 LABEL org.opencontainers.image.title=FrankenPHP
 LABEL org.opencontainers.image.version=1.12.3
@@ -115,8 +117,6 @@ COPY --chmod=755 entrypoint.sh /entrypoint.sh
 
 COPY Caddyfile /etc/frankenphp/Caddyfile
 COPY php.ini-production /etc/frankenphp/php.ini
-
-RUN echo "<?php phpinfo(); ?>" > /usr/share/frankenphp/info.php
 
 # Be sure to replace "your-domain-name.example.com" by your domain name
 # ENV SERVER_NAME=your-domain-name.example.com
