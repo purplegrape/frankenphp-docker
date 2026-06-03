@@ -1,0 +1,14 @@
+{
+	http_port 8080
+	https_port 8443
+	skip_install_trust
+	{$CADDY_GLOBAL_OPTIONS}
+	frankenphp
+}
+
+{$SERVER_NAME:http://} {
+	root {$SERVER_ROOT:/usr/share/frankenphp}
+	encode zstd br gzip
+	{$CADDY_SERVER_EXTRA_DIRECTIVES}
+	php_server
+}
