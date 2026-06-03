@@ -1,5 +1,13 @@
 # syntax=docker/dockerfile:1
-FROM docker.io/redhat/ubi9-minimal:latest as builder
+FROM scratch
+LABEL org.opencontainers.image.title=FrankenPHP
+LABEL org.opencontainers.image.version=1.12.3
+LABEL org.opencontainers.image.url=https://frankenphp.dev
+LABEL org.opencontainers.image.source=https://github.com/php/frankenphp
+LABEL org.opencontainers.image.licenses=MIT
+LABEL org.opencontainers.image.phpversion=8.2.31
+
+COPY --from=redhat/ubi9-minimal / /
 COPY --from=tianon/gosu --chmod=755 /gosu /usr/bin/
 
 RUN rpm -Uvh https://rpm.henderkes.com/static-php-1-1.noarch.rpm && \
@@ -106,24 +114,9 @@ RUN rpm -Uvh https://rpm.henderkes.com/static-php-1-1.noarch.rpm && \
 RUN chown -R frankenphp:frankenphp /var/lib/frankenphp /var/lib/php-zts
 RUN echo "<?php phpinfo(); ?>" > /usr/share/frankenphp/info.php
 
-FROM scratch
-LABEL org.opencontainers.image.title=FrankenPHP
-LABEL org.opencontainers.image.version=1.12.3
-LABEL org.opencontainers.image.url=https://frankenphp.dev
-LABEL org.opencontainers.image.source=https://github.com/php/frankenphp
-LABEL org.opencontainers.image.licenses=MIT
-LABEL org.opencontainers.image.phpversion=8.2.31
-
-COPY --from=builder / /
-COPY --chmod=755 entrypoint.sh /entrypoint.sh
-
 COPY Caddyfile /etc/frankenphp/Caddyfile
 COPY php.ini-production /etc/frankenphp/php.ini
-
-# Be sure to replace "your-domain-name.example.com" by your domain name
-# ENV SERVER_NAME=your-domain-name.example.com
-# If you want to disable HTTPS, use this value instead:
-# ENV SERVER_NAME=:8080
+COPY --chmod=755 entrypoint.sh /entrypoint.sh
 
 # Restart the Worker After a Certain Number of Requests
 # ENV MAX_REQUESTS=1000
@@ -131,11 +124,8 @@ COPY php.ini-production /etc/frankenphp/php.ini
 # Enable debug mode
 # ENV CADDY_GLOBAL_OPTIONS=debug
 
-# define you own php.ini
-# ENV PHP_INI_SCAN_DIR=/etc/frankenphp/php.d
-
 # set your own serverroot:
-# ENV SERVER_ROOT=public/
+# ENV SERVER_ROOT=/data/www
 
 VOLUME [ "/data" ]
 WORKDIR /etc/frankenphp
