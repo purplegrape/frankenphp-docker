@@ -1,12 +1,18 @@
 #!/usr/bin/env bash
 
-RUNUSER=${RUNUSER:-999}
-RUNGROUP=${RUNGROUP:-999}
+set -e
 
-if [ "$RUNUSER" != "999" ] && [ "$RUNGROUP" != "999" ]; then
-    # If we're not running as expected user, fix permissions
-    chown -R $RUNUSER:$RUNGROUP /var/lib/frankenphp
-    exec gosu $RUNUSER:$RUNGROUP "$0"
+if [ ! -d /data/www ]; then
+    mkdir -p /data/www
+    chown -R frankenphp:frankenphp /data/www
 fi
 
+if [ ! -L /var/www/html ];then
+    ln -sf /data/www /var/www/html
+fi
 
+if [ $1 = "frankenphp" ]; then
+    exec gosu frankenphp:frankenphp "$@"
+else
+    exec "$@"
+fi
