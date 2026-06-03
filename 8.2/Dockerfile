@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-FROM docker.io/redhat/ubi9-minimal:latest
+FROM docker.io/almalinux/9-minimal:latest
 LABEL org.opencontainers.image.title=FrankenPHP
 LABEL org.opencontainers.image.version=1.12.3
 LABEL org.opencontainers.image.url=https://frankenphp.dev
