@@ -8,6 +8,7 @@ if [ ! -d /data/www ]; then
 fi
 
 if [ ! -L /var/www/html ];then
+    mkdir -p /var/www
     ln -sf /data/www /var/www/html
 fi
 
