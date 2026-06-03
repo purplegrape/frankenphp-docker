@@ -1,3 +1,8 @@
+# The Caddyfile is an easy way to configure FrankenPHP and the Caddy web server.
+#
+# https://frankenphp.dev/docs/config
+# https://caddyserver.com/docs/caddyfile
+
 {
 	http_port 8080
 	https_port 8443
