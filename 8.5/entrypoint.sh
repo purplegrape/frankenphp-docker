@@ -2,16 +2,13 @@
 
 set -e
 
-echo "Please specify your own SERVER_ROOT other than /usr/share/frankenphp"
-
-if [ ! -d /data/www ]; then
-    mkdir -p /data/www
-    chown -R frankenphp:frankenphp /data/www
+if [ -z "$FRANKENPHP_CONFIG" ]; then
+    export FRANKENPHP_CONFIG="num_threads 2;max_threads 4"
 fi
 
-if [ ! -L /var/www/html ];then
-    mkdir -p /var/www
-    ln -sf /data/www /var/www/html
+if [ ! -d /app/public ]; then
+    mkdir -p /app/public
+    chown -R frankenphp:frankenphp /app/public
 fi
 
 if [ $1 = "frankenphp" ]; then
