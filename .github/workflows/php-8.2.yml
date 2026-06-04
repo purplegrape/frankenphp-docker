@@ -6,7 +6,7 @@ on:
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: frankenphp
-  VERSION: php8.2
+  VERSION: 1.12.3-php8.2-ubi
 
 jobs:
   build-and-push:
