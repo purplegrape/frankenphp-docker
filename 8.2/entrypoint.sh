@@ -2,6 +2,8 @@
 
 set -e
 
+echo "Please specify your own SERVER_ROOT other than /usr/share/frankenphp"
+
 if [ ! -d /data/www ]; then
     mkdir -p /data/www
     chown -R frankenphp:frankenphp /data/www
