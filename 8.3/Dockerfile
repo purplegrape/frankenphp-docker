@@ -125,7 +125,7 @@ COPY php.ini-production /etc/frankenphp/php.ini
 # set your own serverroot:
 # ENV SERVER_ROOT=/data/www
 
-VOLUME [ "/data" ]
+VOLUME [ "/app" ]
 WORKDIR /etc/frankenphp
 ENTRYPOINT [ "/entrypoint.sh" ]
 CMD [ "frankenphp","run" ]
