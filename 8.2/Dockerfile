@@ -119,11 +119,14 @@ COPY php.ini-production /etc/frankenphp/php.ini
 # Restart the Worker After a Certain Number of Requests
 # ENV MAX_REQUESTS=1000
 
-# Enable debug mode
-# ENV CADDY_GLOBAL_OPTIONS=debug
+# specify your own document root if you don't want to use the default /app/public
+# ENV SERVER_ROOT=/app/public
 
-# set your own serverroot:
-# ENV SERVER_ROOT=/data/www
+# Caddy options
+# ENV CADDY_GLOBAL_OPTIONS=debug
+# ENV CADDY_AUTO_HTTPS=off
+# ENV CADDY_HTTP_PORT=8080
+# ENV CADDY_HTTPS_PORT=8443
 
 VOLUME [ "/app" ]
 WORKDIR /etc/frankenphp
