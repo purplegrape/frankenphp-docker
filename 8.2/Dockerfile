@@ -1,11 +1,11 @@
 # syntax=docker/dockerfile:1
 FROM docker.io/redhat/ubi9-minimal:latest
 LABEL org.opencontainers.image.title=FrankenPHP \
-      org.opencontainers.image.version=1.12.3 \
+      org.opencontainers.image.version=1.12 \
       org.opencontainers.image.url=https://frankenphp.dev \
       org.opencontainers.image.source=https://github.com/php/frankenphp \
       org.opencontainers.image.licenses=MIT \
-      org.opencontainers.image.phpversion=8.2.31
+      org.opencontainers.image.phpversion=8.2
 
 RUN rpm -Uvh https://rpm.henderkes.com/static-php-1-1.noarch.rpm && \
     microdnf update -y && \
