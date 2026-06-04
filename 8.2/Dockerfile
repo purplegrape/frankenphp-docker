@@ -1,14 +1,11 @@
 # syntax=docker/dockerfile:1
-FROM docker.io/almalinux/9-minimal:latest
-LABEL org.opencontainers.image.title=FrankenPHP
-LABEL org.opencontainers.image.version=1.12.3
-LABEL org.opencontainers.image.url=https://frankenphp.dev
-LABEL org.opencontainers.image.source=https://github.com/php/frankenphp
-LABEL org.opencontainers.image.licenses=MIT
-LABEL org.opencontainers.image.phpversion=8.2.31
-
-COPY --from=tianon/gosu --chmod=755 /gosu /usr/bin/
-COPY --chmod=755 entrypoint.sh /entrypoint.sh
+FROM docker.io/redhat/ubi9-minimal:latest
+LABEL org.opencontainers.image.title=FrankenPHP \
+      org.opencontainers.image.version=1.12.3 \
+      org.opencontainers.image.url=https://frankenphp.dev \
+      org.opencontainers.image.source=https://github.com/php/frankenphp \
+      org.opencontainers.image.licenses=MIT \
+      org.opencontainers.image.phpversion=8.2.31
 
 RUN rpm -Uvh https://rpm.henderkes.com/static-php-1-1.noarch.rpm && \
     microdnf update -y && \
@@ -114,6 +111,8 @@ RUN rpm -Uvh https://rpm.henderkes.com/static-php-1-1.noarch.rpm && \
 RUN chown -R frankenphp:frankenphp /var/lib/frankenphp /var/lib/php-zts
 RUN echo "<?php phpinfo(); ?>" > /usr/share/frankenphp/info.php
 
+COPY --from=tianon/gosu --chmod=755 /gosu /usr/bin/
+COPY --chmod=755 entrypoint.sh /entrypoint.sh
 COPY Caddyfile /etc/frankenphp/Caddyfile
 COPY php.ini-production /etc/frankenphp/php.ini
 
