@@ -9,6 +9,9 @@
 	skip_install_trust
 	{$CADDY_GLOBAL_OPTIONS}
 	frankenphp {
+		num_threads {$NUM_THREADS:2}
+		max_threads {$MAX_THREADS:4}
+		max_requests {$MAX_REQUEST:1000}
 		{$FRANKENPHP_CONFIG}
 	}
 }
