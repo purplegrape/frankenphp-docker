@@ -108,6 +108,7 @@ RUN rpm -Uvh https://rpm.henderkes.com/static-php-1-1.noarch.rpm && \
 #	php-zts-zip
 #	php-zts-zstd
 
+RUN setcap -r /usr/bin/frankenphp
 RUN chown -R frankenphp:frankenphp /var/lib/frankenphp /var/lib/php-zts
 RUN echo "<?php phpinfo(); ?>" > /usr/share/frankenphp/info.php
 

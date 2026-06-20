@@ -12,7 +12,6 @@ if [ ! -d /app/public ]; then
 fi
 
 if [ $1 = "frankenphp" ]; then
-    setcap -r /usr/bin/frankenphp
     exec gosu frankenphp:frankenphp "$@"
 else
     exec "$@"
