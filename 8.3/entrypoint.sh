@@ -2,8 +2,8 @@
 
 set -e
 
-XDG_CONFIG_HOME=/app/.config
-XDG_DATA_HOME=/app/.local/share
+export XDG_CONFIG_HOME=/app/.config
+export XDG_DATA_HOME=/app/.local/share
 
 if [ ! -d /app/.config ]; then
     mkdir -p /app/.config
