@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1
 FROM docker.io/redhat/ubi9-minimal:latest
 LABEL org.opencontainers.image.title=FrankenPHP \
-      org.opencontainers.image.version=1.12 \
+      org.opencontainers.image.version=1.13 \
       org.opencontainers.image.url=https://frankenphp.dev \
       org.opencontainers.image.source=https://github.com/php/frankenphp \
       org.opencontainers.image.licenses=MIT \

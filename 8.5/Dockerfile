@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1
 FROM docker.io/redhat/ubi9-minimal:latest
 LABEL org.opencontainers.image.title=FrankenPHP \
-      org.opencontainers.image.version=1.12 \
+      org.opencontainers.image.version=1.13 \
       org.opencontainers.image.url=https://frankenphp.dev \
       org.opencontainers.image.source=https://github.com/php/frankenphp \
       org.opencontainers.image.licenses=MIT \
@@ -115,7 +115,7 @@ RUN echo "<?php phpinfo(); ?>" > /usr/share/frankenphp/info.php
 COPY --from=tianon/gosu --chmod=755 /gosu /usr/bin/
 COPY --chmod=755 entrypoint.sh /entrypoint.sh
 COPY Caddyfile /etc/frankenphp/Caddyfile
-COPY php.ini-production /etc/frankenphp/php.ini
+# COPY php.ini-production /etc/frankenphp/php.ini
 
 # Restart the Worker After a Certain Number of Requests
 # ENV MAX_REQUESTS=1000
