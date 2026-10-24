@@ -112,7 +112,7 @@ RUN setcap -r /usr/bin/frankenphp
 RUN chown -R frankenphp:frankenphp /var/lib/frankenphp /var/lib/php-zts
 RUN echo "<?php phpinfo(); ?>" > /usr/share/frankenphp/info.php
 
-COPY --from=tianon/gosu --chmod=755 /gosu /usr/bin/
+COPY --from=tianon/gosu --chmod=755 /gosu /usr/sbin/
 COPY --chmod=755 entrypoint.sh /entrypoint.sh
 COPY Caddyfile /etc/frankenphp/Caddyfile
 # COPY php.ini-production /etc/frankenphp/php.ini
