@@ -48,6 +48,6 @@ jobs:
           podman load -i ./image.tar
           podman push \
             --force-compression \
-            --compression-level 9 \
+            --compression-level 12 \
             --compression-format zstd:chunked \
             ${{ env.REGISTRY }}/${{ github.actor }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
