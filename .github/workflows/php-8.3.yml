@@ -1,6 +1,10 @@
 name: frankenphp:php8.3
 
 on:
+  push:
+    paths:
+      - '8.3/Dockerfile'
+      - '.github/workflows/php-8.3.yml'
   workflow_dispatch:
 
 env:
