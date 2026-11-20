@@ -2,7 +2,9 @@ name: frankenphp:php8.2
 
 on:
   push:
-    branches: [ "main" ]
+    paths:
+      - '8.2/Dockerfile'
+      - '.github/workflows/php-8.2.yml'
   workflow_dispatch:
 
 env:
