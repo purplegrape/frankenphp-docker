@@ -5,7 +5,7 @@ LABEL org.opencontainers.image.title=FrankenPHP \
       org.opencontainers.image.url=https://frankenphp.dev \
       org.opencontainers.image.source=https://github.com/php/frankenphp \
       org.opencontainers.image.licenses=MIT \
-      org.opencontainers.image.phpversion=8.3
+      org.opencontainers.image.phpversion=8.3.37
 
 RUN rpm -Uvh https://rpm.henderkes.com/static-php-1-1.noarch.rpm && \
     microdnf update -y && \
